@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario:</h1>
+    <form>
+        <label>Nombre:</label>
+        <input type="text" name="nombre">
+        <br><br>
+
+        <label>Apellidos:</label>
+        <input type="text" name="apellidos">
+        <br><br>
+
+        <label>Contraseña:</label>
+        <input type="password" name="contrasenya">
+        <br><br>
+
+        <label>Teléfono:</label>
+        <input type="tel" name="telefono">
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email">
+        <br><br>
+
+        <label>Curso:</label>
+        <select name="curso" id="curso">
+            <option value="">--Seleccione una opción--</option>
+            <option value="daw">Desarrollo de Aplicaciones Web</option>
+            <option value="dam">Desarrollo de Aplicaciones Multiplataforma</option>
+            <option value="marketing">Marketing</option>
+            <option value="admin">Administración y Finanzas</option>
+        </select>
+        <br><br>
+
+        <label>Sexo:</label>
+        <input type="radio" id="hombre" name="sexo" value="Hombre">
+        <label for="hombre">Hombre</label>
+        <input type="radio" id="mujer" name="sexo" value="Mujer">
+        <label for="mujer">Mujer</label>
+        <input type="radio" id="otro" name="sexo" value="Otro">
+        <label for="otro">Otro</label>
+        <br><br>
+
+        <input type="submit" value="Enviar">
+
+    </form>
+</body>
+</html>
