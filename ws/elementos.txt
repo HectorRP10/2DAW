@@ -1,0 +1,3 @@
+{"nombre":"H\u00e9ctor","apellidos":"Rovi\u00f1o","email":"hector@sd.es","telefono":"666666666","curso":"daw","contrasenya":"12345","sexo":"Otro"}
+{"nombre":"Sa\u00fal","apellidos":"italiano","email":"saul@sd.es","telefono":"666667466","curso":"marketing","contrasenya":"552iweudn","sexo":"Hombre"}
+{"nombre":"antony","apellidos":"sancho","email":"fdwe@ee.ee","telefono":"wefwaef","curso":"dam","contrasenya":"qwdawef","sexo":"Mujer"}
