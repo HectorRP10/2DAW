@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabla</title>
     <script src="js/index.js" type="text/javascript" defer></script>
+    <script src="js/nav.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
-    <h1>Tabla:</h1>
-    <input type="text" class="filtro">
-       
-    <table border="1">
-        <thead>
-            <tr>
+    <div id="tabla">
+        <h1>Alumnos</h1>
+        <input type="text" class="filtro">
+    
+        <table border="1">
+            <thead>
+                <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Email</th>
@@ -20,22 +23,28 @@
                 <th>Curso</th>
                 <th>Sexo</th>
                 <th>Acciones</th>
-            </tr>
-        </thead>
+                </tr>
+            </thead>
 
-        <tbody>
-        </tbody>
+            <tbody>
+            </tbody>
 
-    </table>
-    <hr>
-    <h2>Enlaces disponibles:</h2>
-    <ul>
-        <li>
-            <a href="Formulario.html">Ir al Formulario</a>
-        </li>
-        <li>
-            <a href="Lista.html">Ver Lista de enlaces</a>
-        </li>
-    </ul>
+        </table>
+    
+        <form id="formEditar" style="display:none;">
+            <h3>Editar usuario</h3>
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="text" id="apellidos" placeholder="Apellidos">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="telefono" placeholder="Teléfono">
+            <input type="text" id="curso" placeholder="Curso">
+            <select id="sexo">
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+            <button type="button" id="btnGuardar">Guardar</button>
+        </form>
+    </div>
+
 </body>
 </html>
