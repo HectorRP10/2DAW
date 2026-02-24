@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,13 @@
     <script src="js/nav.js" type="text/javascript" defer></script>
     <link rel="stylesheet" href="nav.css">
 </head>
+
 <body>
     <h1>Formulario:</h1>
-    <form action="ws/createElement.php" method="post">
+    <form action="ws/crearUsuario.php" method="post">
+        <label>ID:</label>
+        <input type="number" name="id">
+        <br><br>
 
         <label>Nombre:</label>
         <input type="text" name="nombre">
@@ -31,14 +36,8 @@
         <input type="email" name="email">
         <br><br>
 
-        <label>Curso:</label>
-        <select name="curso" id="curso">
-            <option value="">--Seleccione una opción--</option>
-            <option value="daw">Desarrollo de Aplicaciones Web</option>
-            <option value="dam">Desarrollo de Aplicaciones Multiplataforma</option>
-            <option value="marketing">Marketing</option>
-            <option value="admin">Administración y Finanzas</option>
-        </select>
+        <label>Fecha Nacimiento:</label>
+        <input type="date" name="fecha_nacimiento">
         <br><br>
 
         <label>Sexo:</label>
@@ -64,4 +63,5 @@
         </li>
     </ul>
 </body>
+
 </html>

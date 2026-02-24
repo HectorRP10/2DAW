@@ -1,0 +1,14 @@
+{
+    "name": "hector/2daw-api",
+    "description": "API para proyecto mysql",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "ws/Config.php"
+        ]
+    }
+}
