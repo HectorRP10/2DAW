@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabla</title>
     <script src="js/index.js" type="text/javascript" defer></script>
     <script src="js/nav.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
     <div id="tabla">
         <h1>Alumnos</h1>
         <input type="text" class="filtro">
-    
+
         <table border="1">
             <thead>
                 <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Curso</th>
-                <th>Sexo</th>
-                <th>Acciones</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
 
@@ -30,21 +33,22 @@
             </tbody>
 
         </table>
-    
+
         <form id="formEditar" style="display:none;">
             <h3>Editar usuario</h3>
             <input type="text" id="nombre" placeholder="Nombre">
             <input type="text" id="apellidos" placeholder="Apellidos">
             <input type="email" id="email" placeholder="Email">
             <input type="text" id="telefono" placeholder="Teléfono">
-            <input type="text" id="curso" placeholder="Curso">
+            <input type="date" id="fecha_nacimiento" placeholder="Fecha Nacimiento">
             <select id="sexo">
                 <option value="M">M</option>
                 <option value="F">F</option>
             </select>
-            <button type="button" id="btnGuardar">Guardar</button>
+            <button type="button" onclick="guardarUsuario()">Guardar</button>
         </form>
     </div>
 
 </body>
+
 </html>

@@ -1,16 +1,22 @@
-const datos = [
-    {nombre: "Juan", apellidos: "Pérez", email: "juan@gmail.com", telefono: "123456789", curso: "2DAW", sexo: "M"},
-    {nombre: "Ana", apellidos: "Gómez", email: "ana@gmail.com", telefono: "987654321", curso: "1DAW", sexo: "F"},
-    {nombre: "Luis", apellidos: "Martínez", email: "luis@gmail.com", telefono: "456123789", curso: "2DAW", sexo: "M"},
-    {nombre: "Marta", apellidos: "López", email: "marta@gmail.com", telefono: "321654987", curso: "1DAW", sexo: "F"},
-    {nombre: "Carlos", apellidos: "Sánchez", email: "carlos@gmail.com", telefono: "789456123", curso: "2DAW", sexo: "M"},
-    {nombre: "Laura", apellidos: "Fernández", email: "laura@gmail.com", telefono: "159753486", curso: "1DAW", sexo: "F"}
-];
-
 let indiceEditar = null;
+let datos = [];
 const tbody = document.querySelector("tbody");
 
-function mostrarDatos() {
+async function getUsuarios() {
+    try {
+        const response = await fetch("ws/getUsuario.php");
+        const json = await response.json();
+
+        if (json.success) {
+            datos = json.data;
+            mostrarDatos(datos);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+function mostrarDatos(datos) {
     tbody.innerHTML = "";
 
     datos.forEach(dato => {
@@ -20,57 +26,109 @@ function mostrarDatos() {
             <td>${dato.apellidos}</td>
             <td>${dato.email}</td>
             <td>${dato.telefono}</td>
-            <td>${dato.curso}</td>
+            <td>${dato.fecha_nacimiento}</td>
             <td>${dato.sexo}</td>
             <td>
-                <button class="btnEliminar">Eliminar</button>
-                <button class="btnEditar">Editar</button>
+                <button class="btnEliminar" onclick="eliminarUsuario(${dato.id}, '${dato.nombre}', '${dato.apellidos}')">Eliminar</button>
+                <button class="btnEditar" onclick="editarUsuario(${datos.indexOf(dato)})">Editar</button>
             </td>
         `;
         tbody.appendChild(fila);
-
-        // Botón Eliminar
-        fila.querySelector(".btnEliminar").addEventListener("click", () => {
-            datos.splice(datos.indexOf(dato), 1);
-            mostrarDatos();
-        });
-
-        // Botón Editar
-        fila.querySelector(".btnEditar").addEventListener("click", () => {
-            indiceEditar = datos.indexOf(dato);
-
-            document.getElementById("nombre").value = dato.nombre;
-            document.getElementById("apellidos").value = dato.apellidos;
-            document.getElementById("email").value = dato.email;
-            document.getElementById("telefono").value = dato.telefono;
-            document.getElementById("curso").value = dato.curso;
-            document.getElementById("sexo").value = dato.sexo;
-
-            document.getElementById("formEditar").style.display = "block";
-        });
     });
 }
 
-// Evento botón Guardar
-document.getElementById("btnGuardar").addEventListener("click", () => {
+async function eliminarUsuario(id, nombre, apellidos) {
+    const confirm = await Swal.fire({
+        title: "¿Eliminar usuario?",
+        text: `Se eliminará a ${nombre} ${apellidos} de forma permanente.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#6c757d",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    });
+
+    if (!confirm.isConfirmed) return;
+
+    try {
+        const response = await fetch(`ws/deleteUsuario.php?id=${id}`);
+        const json = await response.json();
+
+        if (json.success) {
+            await getUsuarios();
+            Swal.fire({ icon: "success", title: "Eliminado", text: json.message, confirmButtonColor: "#5aa270" });
+        } else {
+            Swal.fire({ icon: "error", title: "Error", text: json.message });
+        }
+    } catch (error) {
+        Swal.fire({ icon: "error", title: "Error de red", text: error.message });
+    }
+}
+
+async function editarUsuario(indice) {
+    const dato = datos[indice];
+
+    const confirm = await Swal.fire({
+        title: "¿Editar usuario?",
+        text: `Vas a editar a ${dato.nombre} ${dato.apellidos}.`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#6c757d",
+        confirmButtonText: "Sí, editar",
+        cancelButtonText: "Cancelar"
+    });
+
+    if (!confirm.isConfirmed) return;
+
+    indiceEditar = indice;
+
+    document.getElementById("nombre").value = dato.nombre;
+    document.getElementById("apellidos").value = dato.apellidos;
+    document.getElementById("email").value = dato.email;
+    document.getElementById("telefono").value = dato.telefono;
+    document.getElementById("fecha_nacimiento").value = dato.fecha_nacimiento;
+    document.getElementById("sexo").value = dato.sexo;
+
+    document.getElementById("formEditar").style.display = "block";
+}
+
+async function guardarUsuario() {
     if (indiceEditar === null) return;
 
-    datos[indiceEditar].nombre = document.getElementById("nombre").value;
-    datos[indiceEditar].apellidos = document.getElementById("apellidos").value;
-    datos[indiceEditar].email = document.getElementById("email").value;
-    datos[indiceEditar].telefono = document.getElementById("telefono").value;
-    datos[indiceEditar].curso = document.getElementById("curso").value;
-    datos[indiceEditar].sexo = document.getElementById("sexo").value;
+    const id = datos[indiceEditar].id;
 
-    document.getElementById("formEditar").style.display = "none";
+    const formData = new FormData();
+    formData.append("nombre", document.getElementById("nombre").value);
+    formData.append("apellidos", document.getElementById("apellidos").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("telefono", document.getElementById("telefono").value);
+    formData.append("fecha_nacimiento", document.getElementById("fecha_nacimiento").value);
+    formData.append("sexo", document.getElementById("sexo").value);
 
-    mostrarDatos();
+    try {
+        const response = await fetch(`ws/modificarUsuario.php?id=${id}`, {
+            method: "POST",
+            body: formData
+        });
+        const json = await response.json();
 
-    indiceEditar = null;
-});
+        if (json.success) {
+            document.getElementById("formEditar").style.display = "none";
+            indiceEditar = null;
+            await getUsuarios();
+            Swal.fire({ icon: "success", title: "Guardado", text: json.message, confirmButtonColor: "#5aa270" });
+        } else {
+            Swal.fire({ icon: "error", title: "Error", text: json.message });
+        }
+    } catch (error) {
+        Swal.fire({ icon: "error", title: "Error de red", text: error.message });
+    }
+}
 
 // Filtro de tabla
-document.querySelector(".filtro").addEventListener("input", function() {
+document.querySelector(".filtro").addEventListener("input", function () {
     const filtro = this.value.toLowerCase();
     const filas = tbody.querySelectorAll("tr");
 
@@ -82,4 +140,4 @@ document.querySelector(".filtro").addEventListener("input", function() {
     });
 });
 
-mostrarDatos();
+getUsuarios();

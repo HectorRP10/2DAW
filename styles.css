@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
 }
@@ -58,14 +59,17 @@ nav a.activo {
     margin-bottom: 10px;
 }
 
-#formEditar input, #formEditar select {
+#formEditar input,
+#formEditar select {
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-#formEditar button, .btnEditar, .btnEliminar {
+#formEditar button,
+.btnEditar,
+.btnEliminar {
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
@@ -107,7 +111,8 @@ nav a.activo {
     margin: 20px 0;
 }
 
-#tabla th, #tabla td {
+#tabla th,
+#tabla td {
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #eee;
@@ -120,4 +125,110 @@ nav a.activo {
     text-transform: uppercase;
     font-size: 0.85em;
     letter-spacing: 0.5px;
+}
+
+
+
+#formulario-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+#formulario-container h1,
+#formulario-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#formulario-container form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+#formulario-container label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+#formulario-container input[type="text"],
+#formulario-container input[type="number"],
+#formulario-container input[type="email"],
+#formulario-container input[type="tel"],
+#formulario-container input[type="password"],
+#formulario-container input[type="date"],
+#formulario-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#formulario-container input:focus {
+    outline: none;
+    border-color: #5aa270;
+}
+
+.campo-sexo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.campo-sexo label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.campo-sexo-wrapper,
+input[type="submit"] {
+    grid-column: span 2;
+}
+
+input[type="submit"] {
+    background-color: #5aa270;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #4a8a5e;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+ul li a {
+    color: #5aa270;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+ul li a:hover {
+    text-decoration: underline;
 }

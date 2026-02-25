@@ -6,62 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
     <script src="js/nav.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/formulario.js"></script>
 </head>
 
 <body>
-    <h1>Formulario:</h1>
-    <form action="ws/crearUsuario.php" method="post">
-        <label>ID:</label>
-        <input type="number" name="id">
-        <br><br>
+    <div id="formulario-container">
+        <h1>Formulario</h1>
+        <form onsubmit="enviarFormulario(event)">
+            <div>
+                <label>ID:</label>
+                <input type="number" name="id">
+            </div>
 
-        <label>Nombre:</label>
-        <input type="text" name="nombre">
-        <br><br>
+            <div>
+                <label>Nombre:</label>
+                <input type="text" name="nombre">
+            </div>
 
-        <label>Apellidos:</label>
-        <input type="text" name="apellidos">
-        <br><br>
+            <div>
+                <label>Apellidos:</label>
+                <input type="text" name="apellidos">
+            </div>
 
-        <label>Contraseña:</label>
-        <input type="password" name="contrasenya">
-        <br><br>
+            <div>
+                <label>Contraseña:</label>
+                <input type="password" name="contrasenya">
+            </div>
 
-        <label>Teléfono:</label>
-        <input type="tel" name="telefono">
-        <br><br>
+            <div>
+                <label>Teléfono:</label>
+                <input type="tel" name="telefono">
+            </div>
 
-        <label>Email:</label>
-        <input type="email" name="email">
-        <br><br>
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email">
+            </div>
 
-        <label>Fecha Nacimiento:</label>
-        <input type="date" name="fecha_nacimiento">
-        <br><br>
+            <div>
+                <label>Fecha Nacimiento:</label>
+                <input type="date" name="fecha_nacimiento">
+            </div>
 
-        <label>Sexo:</label>
-        <input type="radio" id="hombre" name="sexo" value="Hombre">
-        <label for="hombre">Hombre</label>
-        <input type="radio" id="mujer" name="sexo" value="Mujer">
-        <label for="mujer">Mujer</label>
-        <input type="radio" id="otro" name="sexo" value="Otro">
-        <label for="otro">Otro</label>
-        <br><br>
+            <div class="campo-sexo-wrapper">
+                <label>Sexo:</label>
+                <div class="campo-sexo">
+                    <label><input type="radio" name="sexo" value="M"> Hombre</label>
+                    <label><input type="radio" name="sexo" value="F"> Mujer</label>
+                    <label><input type="radio" name="sexo" value="O"> Otro</label>
+                </div>
+            </div>
 
-        <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar">
+        </form>
 
-    </form>
-    <hr>
-    <h2>Enlaces disponibles:</h2>
-    <ul>
-        <li>
-            <a href="Tabla.html">Ver la tabla</a>
-        </li>
-        <li>
-            <a href="Lista.html">Ver Lista de enlaces</a>
-        </li>
-    </ul>
+        <hr>
+        <h2>Enlaces disponibles:</h2>
+        <ul>
+            <li><a href="Tabla.html">Ver la tabla</a></li>
+            <li><a href="Lista.html">Ver Lista de enlaces</a></li>
+        </ul>
+    </div>
 </body>
 
 </html>
